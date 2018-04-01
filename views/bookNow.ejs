@@ -1,0 +1,153 @@
+<% include partials/header %>
+<style>
+    .btn-outline {
+    background-color: transparent;
+    color: #6873a8;
+    transition: all .5s;
+
+}
+a {
+    color: #6873a8;
+    text-decoration: bold;
+    font-family: Trebuchet MS;
+    font-weight: bolder;
+}
+p 
+{
+    margin: 0 0 10px;
+    padding: 10px;
+}
+.btn-primary.btn-outline {
+    color: #ffffff;
+}
+
+.my-color{
+    color: #6873a8;
+}
+.btn-primary.btn-outline:hover{
+    color: #6873a8;
+}
+
+ .navbar-custom {
+        color: #ffffff;
+        background-color: #6873a8;
+        -webkit-box-shadow: 0 8px 6px -6px #999;
+        -moz-box-shadow: 0 8px 6px -6px #999;
+        box-shadow: 0 8px 6px -6px #999;
+    }
+   
+    .navbar-default .navbar-brand {
+        color: #fff;
+    }
+ 
+    .navbar-default .navbar-nav>li>a {
+        color: #fff;
+    }
+    .myFont{
+        font-family: "Trebuchet MS";
+        font-weight: bold;
+    }
+    .my-back{
+        background-color: #dcdcdc;
+    }
+    .line{
+        border-left: 1px solid white;
+
+    }
+    .long-line{
+        border-bottom: 1px solid #FF0000;
+    }
+    .down-space{
+        padding-bottom: 2%;
+    }
+    
+    
+    .top-space{
+        padding-top: 2%;
+    }
+    .right-space{
+        padding-right: 100%;
+    }
+    .left-side {
+         
+          min-height: 90vh;
+          
+          background:  url(images/bck.jpg)  ;
+          background-size: cover;
+    }
+    .butSize{
+        border: 2px solid #6873a8;
+        padding: 9px 50px;
+        background-image: url(images/blurbck.jpg);
+    }
+    .butPlace{
+        margin-top: 35%;
+        margin-left: 45%;
+    }
+    .loginFont{
+        color: #6873a8;
+        margin-left: 45%  ;
+        font-family: "Trebuchet MS";
+        font-weight: bold;
+   }.loginDiv{
+    background-color: #dcdcdc ;
+   }
+   .loginDiv{
+    background-color: #dcdcdc ;
+    padding: 3%;
+    margin-top : 1%;
+    margin-left: 32%;
+    margin-right: 32%;
+    border-radius: 5%;
+  }
+  input[type="button"].btn-block:active{
+    background-color:    #5c6bb5;
+   }
+   .form-control:focus{
+        border: 1px solid #6873a8;
+   }
+   .form-control{
+       color: #000000;
+       font-family: "Trebuchet MS";
+       font-weight: bold;
+   }
+   .btn-block{
+    background-color:   #6873a8;
+   }
+   .btn-block:hover{
+    background-color:   #616faf;
+   }   
+   .white{
+       color:white;
+   }
+   .navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFFFFF;
+}
+</style>
+
+
+<div class="container">
+        <h1 class="loginFont"><u>BOOK PAGE</u></h1>
+        <h2 class="loginFont"><u><%= halls.name %></u></h2>
+</div>
+
+<form action="/hall/<%= halls._id %>/book" method="POST">
+    <div class="loginDiv form-group">
+        <label class="myFont">Hall Name</label>
+        <p class="myFont"><%= halls.name %></p>
+
+        <label class="myFont">Enter Number of Days :</label>
+        <input type="text" name="NumOfDays" class="form-control" required><br>
+    
+        <label class="myFont">From Date :</label>
+        <input type="date" name="FromDate" class="form-control" required><br><br>
+
+        <label class="myFont">Enter Your Event :</label>
+        <input type="text" name="EventName" class="form-control" required><br>
+    
+        <button class="btn btn-primary btn-block">Submit</button><br>
+    </div>
+</form>
+
+
+<% include partials/footer %>

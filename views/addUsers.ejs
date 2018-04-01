@@ -1,0 +1,32 @@
+<% include partials/header %>
+<h1 class="loginFont"><u>Admin Page</u></h1>
+
+<form action="/addUsers" method="POST">
+    <div class="loginDiv form-group">
+       
+            <label class="myFont">Name :</label>
+            <input type="text" name="name" class="form-control" required><br>
+
+            <label class="myFont">Hall Name :</label>
+            <input type="text" name="Hname" class="form-control" required><br>
+        
+            <label class="myFont">Email :</label>
+            <input type="email" name="username" class="form-control" required><br>
+        
+            <label class="myFont">Password :</label>
+            <input type="password" name="password" class="form-control" required><br>
+        
+            <label class="myFont">Mobile Number :</label>
+            <input type="number" name="mobile" class="form-control" required><br>
+        
+            <label class="myFont">Location :</label>
+            <input type="text" name="location" class="form-control" required><br>
+        
+            <br>
+            <button class="btn btn-primary btn-block">Submit</button>
+            <a href="/login">Already Have an Account Please Login</a>
+    </div>
+</form>
+
+
+<% include partials/footer %>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <title >
+                BookMyHall        
+            </title> 
+            <!-- for validation -->
+            <script type="text/javascript" src="http://1000hz.github.io/bootstrap-validator/dist/validator.min.js"></script>
+            <!-- using bootstrap -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="../style.css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+            <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+            <style>
+                .footer h3 {
+	color: #FFF;
+	font-size:15px;
+	font-weight: 600;
+	text-transform: uppercase;
+	margin-bottom:20px;
+}
+
+.footer ul {
+	font-size: 13px;
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0;
+	margin-top: 15px;
+	color: #7F8C8D;
+}
+
+.footer ul li a {
+	padding: 10px 0px;
+    display: block;
+    color: #ccc;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.footer ul li a:hover{
+	color:#6873a8;
+}
+
+.footer-bottom{
+	background-color:#6873a8;
+    color: #282c2d;
+    font-size: 12px;
+	text-align: center;
+	height: 50px;
+    line-height: 50px;
+	position: relative;
+	max-width:1350px;
+    margin: auto;
+}
+
+.footer-bottom p{
+	font-size:13px;
+	color: #FFF;
+}
+
+.footer-top{
+	background-color: #f7f7f7;
+    text-align: center;
+	max-width:1350px;
+    margin: auto;
+}
+
+.footer-top .social-icons{
+   padding:50px 0px;
+}
+
+.footer-top .social-icons i{
+	padding:0px 20px;
+	font-size:20px;
+	color: #aaa;
+}
+
+.footer-top .social-icons i:hover{
+	color:#6873a8;
+	
+}
+
+.logo{
+   color:#FFF;
+   font-size:30px;
+   font-weight:600;
+}
+.follow{
+	color:#6873a8;
+	font-style:oblique;
+}
+            </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                              <span class="sr-only">Toggle navigation</span>
+                              <span class="icon-bar white"></span>
+                              <span class="icon-bar white"></span>
+                              <span class="icon-bar white"></span>
+                            </button>
+                            <a href="/" class="navbar-brand myFont"><i class="fas fa-building"></i> BookMyHall</a>
+                </div>
+                <div class="collapse navbar-collapse myFont" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/" class="line"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="/search" class="line"><i class="fas fa-search"></i> View Halls</a></li>
+                        <% if(!currentUser){ %>
+                            <li><a href="/login" class="line"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                            <li><a href="/register" class="line"><i class="fas fa-external-link-alt"></i> SignUp</a></li>
+                        <% }else{ %>
+                            <li><a href="#" class="line">Logged In as : <i class="fas fa-user-circle"></i> <%= currentUser.username %></a></li>
+                            <% if(currentUser.type == "O"){ %>
+                                <li><a href="/owner" class="line"><i class="fas fa-user"></i> Owner Profile</a></li>
+                                <% }else{ %>
+                                    <li><a href="/customer" class="line"><i class="fas fa-user"></i> Profile</a></li>
+                                <% } %>
+                            <li><a href="/logout" class="line"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        <% } %>
+                        
+                       
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <br><br><br>
+        <div class="container">
+            <% if(error && error.length > 0 ) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+            <% } %>
+            <% if(success && success.length > 0 ) { %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+            <% } %>
+            <% if(info && info.length > 0 ) { %>
+                <div class="alert alert-info" role="alert">
+                    <%= info %>
+                </div>
+            <% } %>
+        </div>

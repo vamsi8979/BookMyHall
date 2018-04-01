@@ -1,0 +1,70 @@
+<% include partials/header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 my-back">
+            <h3 class="myFont long-line down-space">Profile Information</h3>
+            <a href="/image/<%= user.halls[0]._id %>/edit " class="btn btn-primary">View My Images </a>
+            <a href="/hall/<%= user.halls[0]._id %>/view " class="btn btn-primary">View My Hall </a><br><br> 
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="myFont" > Name :</p>
+                    <p class="myFont">Hall Name :</p>
+                    <p class="myFont">Email  :</p>   
+                    <p class="myFont">Mobile :</p>
+                    <p class="myFont">Location :</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="myFont"><%= user.name %></p>
+                    <p class="myFont"><%= user.halls[0].name %></p>
+                    <p class="myFont"><%= user.email %></p>   
+                    <p class="myFont"><%= user.phno %></p>
+                    <p class="myFont"><%= user.location %></p>
+                </div>
+            </div>
+      
+            <a href="/owner/<%= user._id %>/edit ">Update</a>
+
+            <h4 class="myFont"> &nbsp UPLOAD HALL IMAGES</h4>
+            <div class="col-md-3">
+                <form action="/image/<%= user.halls[0]._id %>/edit" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="myImage"><br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5 my-back">
+            <h3 class="myFont long-line down-space">Hall Information</h3><a href="/owner/<%= user.email %>/viewCustomers" class="btn btn-primary"> View Customers Who Booked Hall</a><br>
+            <h1></h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="myFont">Hall Name :</p>
+                    <p class="myFont">Cost :</p>
+                    <p class="myFont">Capacity :</p>
+                    <p class="myFont">Location :</p>
+                    <p class="myFont">Events :</p>
+                    <p class="myFont">Services :</p>
+                    <p class="myFont">Address  :</p>  
+                    <p class="myFont">Description :</p>
+                     
+                    
+                </div>
+                <div class="col-md-8">
+                        <p class="myFont"><%= user.halls[0].name %></p>
+                        <p class="myFont"><%= user.halls[0].cost %></p>
+                        <p class="myFont"><%= user.halls[0].capacity %></p>
+                        <p class="myFont"><%= user.halls[0].location %></p>
+                        <p class="myFont"><%= user.halls[0].Events %></p>
+                        <p class="myFont"><%= user.halls[0].Services %></p>
+                        <p class="myFont"><%= user.halls[0].Address %></p>
+                        <p class="myFont"><%= user.halls[0].Desc %></p>
+                        
+                        
+                </div>
+            </div>
+            <a href="/hall/<%= user.halls[0]._id %>/edit ">Update</a>
+        </div>
+    </div>  
+
+</div>
+<% include partials/footer %>

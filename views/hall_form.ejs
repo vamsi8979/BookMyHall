@@ -1,0 +1,171 @@
+<% include partials/header %>
+<style>
+    .btn-outline {
+    background-color: transparent;
+    color: #6873a8;
+    transition: all .5s;
+
+}
+a {
+    color: #6873a8;
+    text-decoration: bold;
+    font-family: Trebuchet MS;
+    font-weight: bolder;
+}
+p 
+{
+    margin: 0 0 10px;
+    padding: 10px;
+}
+.btn-primary.btn-outline {
+    color: #ffffff;
+}
+
+.my-color{
+    color: #6873a8;
+}
+.btn-primary.btn-outline:hover{
+    color: #6873a8;
+}
+
+ .navbar-custom {
+        color: #ffffff;
+        background-color: #6873a8;
+        -webkit-box-shadow: 0 8px 6px -6px #999;
+        -moz-box-shadow: 0 8px 6px -6px #999;
+        box-shadow: 0 8px 6px -6px #999;
+    }
+   
+    .navbar-default .navbar-brand {
+        color: #fff;
+    }
+ 
+    .navbar-default .navbar-nav>li>a {
+        color: #fff;
+    }
+    .myFont{
+        font-family: "Trebuchet MS";
+        font-weight: bold;
+    }
+    .my-back{
+        background-color: #dcdcdc;
+    }
+    .line{
+        border-left: 1px solid white;
+
+    }
+    .long-line{
+        border-bottom: 1px solid #FF0000;
+    }
+    .down-space{
+        padding-bottom: 2%;
+    }
+    
+    
+    .top-space{
+        padding-top: 2%;
+    }
+    .right-space{
+        padding-right: 100%;
+    }
+    .left-side {
+         
+          min-height: 90vh;
+          
+          background:  url(images/bck.jpg)  ;
+          background-size: cover;
+    }
+    .butSize{
+        border: 2px solid #6873a8;
+        padding: 9px 50px;
+        background-image: url(images/blurbck.jpg);
+    }
+    .butPlace{
+        margin-top: 35%;
+        margin-left: 45%;
+    }
+    .loginFont{
+        color: #6873a8;
+        margin-left: 33% ;
+        padding-bottom:2%; 
+        font-family: "Trebuchet MS";
+        font-weight: bold;
+   }.loginDiv{
+    background-color: #dcdcdc ;
+   }
+   .loginDiv{
+    background-color: #dcdcdc ;
+    padding: 3%;
+    margin-top : 1%;
+    margin-left: 32%;
+    margin-right: 32%;
+    border-radius: 5%;
+  }
+  input[type="button"].btn-block:active{
+    background-color:    #5c6bb5;
+   }
+   .form-control:focus{
+        border: 1px solid #6873a8;
+   }
+   .form-control{
+       color: #000000;
+       font-family: "Trebuchet MS";
+       font-weight: bold;
+   }
+   .btn-block{
+    background-color:   #6873a8;
+   }
+   .btn-block:hover{
+    background-color:   #616faf;
+   }   
+   .white{
+       color:white;
+   }
+   .navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFFFFF;
+}
+</style>
+<h1 class="loginFont">Update <%= hall.name %> Info </h1>
+
+<form action="/hall/<%= hall._id %>/edit?_method=PUT" method="POST">
+    <div class="loginDiv form-group">
+       
+            <label class="myFont">Name :</label>
+            <input type="text" name="name" class="form-control" value="<%= hall.name %>" ><br>
+        
+            <label class="myFont">Email :</label>
+            <input type="email" name="username" class="form-control" value="<%= hall.email %>" ><br>
+        
+            <label class="myFont">location :</label>
+            <input type="text" name="location" class="form-control" value="<%= hall.location %>"><br>
+        
+            <label class="myFont">Address :</label>
+            <textarea rows="4" cols="50" name="Address" class="form-control">
+                <%= hall.Address %>
+            </textarea>
+            <!-- <input type="textarea" name="Address" class="form-control" value="<%= hall.Address %>"><br> -->
+
+            <label class="myFont">Cost : (per day in Rupees)</label>
+            <input type="number" name="cost" class="form-control" value="<%= hall.cost %>"><br>
+
+            <label class="myFont">Capacity :</label>
+            <input type="number" name="capacity" class="form-control" value="<%= hall.capacity %>"><br>
+
+            <label class="myFont">Description :</label>
+            <textarea rows="4" cols="50" name="Desc" class="form-control">
+                <%= hall.Desc %>
+            </textarea>
+            <!-- <input type="textarea" name="Desc" class="form-control" value="<%= hall.Desc %>"><br> -->
+
+            <label class="myFont">Events : ( Types of Event hall supports in comma seperated)</label>
+            <input type="text" name="Events" class="form-control" value="<%= hall.Events %>"><br>
+
+            <label class="myFont">Services : ( Other Services hall provides in comma seperated such as catering etc..)</label>
+            <input type="text" name="Services" class="form-control" value="<%= hall.Services %>"><br>
+        
+            <br>
+            <button class="btn btn-primary btn-block">Submit</button>
+    </div>
+</form>
+
+<% include partials/footer %>

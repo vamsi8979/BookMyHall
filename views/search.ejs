@@ -1,0 +1,96 @@
+<% include partials/header %>
+<style>
+        .center{
+                margin-left:35%; 
+        }
+</style>
+<div class="container">
+        <header class="jumbotron">
+                <h1 class="myFont"><i class="fas fa-building"></i> Welcome to BookMyHall !!</h1>
+                <p class="myFont"> Book Our Halls Around You </p>
+                <% if(currentUser){ %>
+                        <p class="row">
+                                <div class="form-inline">
+                                        <form action="/search" method="GET">
+                                                <div>
+                                                        <input type="text" name="location_search" placeholder="Search Halls by Name or Location..." class="form-control">
+                                                        <button type="submit" class="btn btn-primary"><i class="fas fa-search   "></i> Search..</button>
+                                                </div>
+                                        </form>
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-4">
+                                                <div class="form-inline">
+                                                        <form action="/search" method="GET">
+                                                                <div>
+                                                                        <h4 class="myFont">Cost Filter</h4>
+                                                                        <input type="radio" name="cost" value="1"> <span class="myFont">Low Price to High Price</span> <br>
+                                                                        <input type="radio" name="cost" value="-1"><span class="myFont">High Price to Low Price</span> <br><br>
+                                                                        <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Apply</button>
+                                                                </div>
+                                                        </form>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                                <div class="form-inline">
+                                                        <form action="/search" method="GET">
+                                                                <div>
+                                                                        <h4 class="myFont">Capacity Filter</h4>
+                                                                        <input type="radio" name="capacity" value="1"> <span class="myFont">Low Capacity to High Capacity</span> <br>
+                                                                        <input type="radio" name="capacity" value="-1"><span class="myFont">High Capacity to Low Capacity</span> <br><br>
+                                                                        <button type="submit" class="btn btn-primary"><i class="fas fa-filter"></i> Apply</button>
+                                                                </div>
+                                                        </form>
+                                                </div>
+                                        </div>
+                                </div>
+        
+                        </p>
+                        <a href="/search" class="btn btn-primary"><i class="fa fa-eye"></i> View All Halls</a>
+                        <a href="#halls" class="center">Please Scroll down... \/</a>
+                <%  } else { %>
+                        <p>Please Login to Use Search operation....</p>
+                <% } %>
+
+                
+                
+        </header>
+     
+        <div class="row text-center"  id="halls" style="display:flex ; flex-wrap : wrap ;">
+                <% if ( noMatch != "") { %>
+                        <a href="/search" > Go Back </a>
+                        <h1><%= noMatch %></h1>
+                        
+                <% } %>
+                <% halls.forEach(function(i){ %>
+                    <% var n = i.images.length %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                            <img src="uploads/<%= i.images[n-1].filename %>">
+                            <div class="caption">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                                <p class="myFont"> <%= i.name %> </p>
+                                                <p class="myFont">Cost :</p>
+                                                <p class="myFont">Capacity :</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                               <p class="myFont"> <%= i.location %> </p>
+                                               <p class="myFont">₹ <%= i.cost %></p>
+                                               <p class="myFont"><%= i.capacity %></p>
+                                        </div>
+                                    </div>
+                                    
+                            </div>
+                    </div>
+                    <p>
+                        <a href="/hall/<%= i._id %>/view" class="btn btn-primary"><i class="fa fa-eye"></i> View More </a>
+                    </p>
+                </div>
+                <% }); %>
+        </div>
+</div>
+
+            
+
+<% include partials/footer %>

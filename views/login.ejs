@@ -1,0 +1,22 @@
+<% include partials/header %>
+
+<h1 class="loginFont"><u>Login</u></h1>
+
+<form action="/login" method="POST" >
+    <div class="loginDiv form-group">
+        <label class="myFont">Email :</label>
+        <input type="text" name="username" id="inputName" class="form-control" required><br>
+        
+        <label class="myFont">Password :</label>
+        <input type="password" name="password" class="form-control" required><br><br>
+    
+        <button class="btn btn-primary btn-block">Submit</button><br>
+    
+    
+        <a href="/register"> Are you a New User ? Please Register </a><br>
+        <a href="/forgotPassword"> Forgot Password</a>
+    </div>
+</form>
+
+
+<% include partials/footer %>

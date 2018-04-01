@@ -1,0 +1,63 @@
+<% include partials/header %>
+<style>
+    .g{
+
+        background-color: #dcdcdc;
+    }
+    .line-bottom{
+        border-bottom: 1px solid white;
+    }
+</style>
+<div class="container">
+    <h1 class="myFont"><i class="fas fa-user"></i> PROFILE</h1>
+    <div class="row">
+        <div class="col-md-5 g">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="myFont" > Name :</p>
+                        <p class="myFont">Email  :</p>   
+                        <p class="myFont">Mobile :</p>
+                        <p class="myFont">Location :</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="myFont"><%= found[0].name %></p>
+                        <p class="myFont"><%= found[0].email %></p>   
+                        <p class="myFont"><%= found[0].phno %></p>
+                        <p class="myFont"><%= found[0].location %></p>
+                    </div>
+                </div>
+                <a href="/customer/<%= found[0]._id %>">Update</a>
+        </div>
+    </div>
+    <div class="row">
+        
+            <%  if(book.length > 0 ) { %>
+                <h3 class="myFont">You Booked the following Hall</h3>
+            <% } %>
+            
+
+            <% for (var i = 0 ; i < book.length; i++) { %>
+                <div class="col-md-6 g line line-bottom" >
+                    <div class="col-md-6 DC line-bottom">
+                        <%   var today = new Date(book[i].FromDate);//date from database %>
+                        <% var NumOfDays = book[i].NumOfDays; %>
+                        <% var tomorrow = new Date(today);//for incrementing the date to next day %>
+                
+                        <h5 class="myFont">Name  :  <%= book[i].hall[0].name %></h5>
+                        <p class="myFont">For the Event : <%= book[i].EventName %></p>
+                        <% for (var j = 0 ; j < NumOfDays ; j++ ){ %>
+                                <p class="myFont"><%= tomorrow %></p>
+                                <% tomorrow.setDate(tomorrow.getDate() + 1);//increment date by one day %>
+                        <% } %>
+                        <a href="/hall/<%= book[i].hall[0]._id %>/view" class="pull-right">View Hall</a> 
+                    </div>
+                </div>
+            
+            <% } %>
+        
+    </div>
+</div>
+    
+
+
+<% include partials/footer %>

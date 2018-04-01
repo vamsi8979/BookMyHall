@@ -1,0 +1,236 @@
+<% include partials/header %>
+<style>
+    .btn-outline {
+    background-color: transparent;
+    color: #6873a8;
+    transition: all .5s;
+
+}
+a {
+    color: #6873a8;
+    text-decoration: bold;
+    font-family: Trebuchet MS;
+    font-weight: bolder;
+}
+p 
+{
+    margin: 0 0 10px;
+    padding: 10px;
+}
+.btn-primary.btn-outline {
+    color: #ffffff;
+}
+
+.my-color{
+    color: #6873a8;
+}
+.btn-primary.btn-outline:hover{
+    color: #6873a8;
+}
+
+ .navbar-custom {
+        color: #ffffff;
+        background-color: #6873a8;
+        -webkit-box-shadow: 0 8px 6px -6px #999;
+        -moz-box-shadow: 0 8px 6px -6px #999;
+        box-shadow: 0 8px 6px -6px #999;
+    }
+   
+    .navbar-default .navbar-brand {
+        color: #fff;
+    }
+ 
+    .navbar-default .navbar-nav>li>a {
+        color: #fff;
+    }
+    .myFont{
+        font-family: "Trebuchet MS";
+        font-weight: bold;
+    }
+    .my-back{
+        background-color: #dcdcdc;
+    }
+    .line{
+        border-left: 1px solid white;
+
+    }
+    .long-line{
+        border-bottom: 1px solid #FF0000;
+    }
+    .down-space{
+        padding-bottom: 2%;
+    }
+    
+    
+    .top-space{
+        padding-top: 2%;
+    }
+    .right-space{
+        padding-right: 100%;
+    }
+    .left-side {
+         
+          min-height: 90vh;
+          
+          background:  url(images/bck.jpg)  ;
+          background-size: cover;
+    }
+    .butSize{
+        border: 2px solid #6873a8;
+        padding: 9px 50px;
+        background-image: url(images/blurbck.jpg);
+    }
+    .butPlace{
+        margin-top: 35%;
+        margin-left: 45%;
+    }
+    .loginFont{
+        color: #6873a8;
+        margin-left: 45%  ;
+        font-family: "Trebuchet MS";
+        font-weight: bold;
+   }.loginDiv{
+    background-color: #dcdcdc ;
+   }
+   .loginDiv{
+    background-color: #dcdcdc ;
+    padding: 3%;
+    margin-top : 1%;
+    margin-left: 32%;
+    margin-right: 32%;
+    border-radius: 5%;
+  }
+  input[type="button"].btn-block:active{
+    background-color:    #5c6bb5;
+   }
+   .form-control:focus{
+        border: 1px solid #6873a8;
+   }
+   .form-control{
+       color: #000000;
+       font-family: "Trebuchet MS";
+       font-weight: bold;
+   }
+   .btn-block{
+    background-color:   #6873a8;
+   }
+   .btn-block:hover{
+    background-color:   #616faf;
+   }   
+   .white{
+       color:white;
+   }
+   .navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFFFFF;
+}
+</style>
+
+<div class="container">
+        <% if(status && status.length > 0 ) { %>
+            <div class="alert alert-info" role="alert">
+                    <%= status %>
+            </div>
+        <% } %>
+       <a href="/search">Back to search</a>
+        <h1 class="myFont"> <i class="fas fa-building"></i> <%= hall.name %></h1>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <% for(var i=0; i < hall.images.length ; i++) { %>    
+                            <li data-target="#myCarousel" data-slide-to="<%= i %>"></li>
+                            <% } %>   
+                        </ol>
+                        <!-- Wrapper for slides -->	
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="/uploads/<%= hall.images[0].filename %>" alt="1" style="width:100%; height:400px;" >
+                            </div>
+                            <% if ( hall.images.length > 1 )  { %>
+                                <% for(var i = 1 ; i < hall.images.length  ; i++) { %>
+                                    <div class="item">
+                                        <img src="/uploads/<%= hall.images[i].filename %>" alt="2" style="width:100%;">
+                                    </div>
+                                <% } %>  
+                            <% } %>
+                        </div>
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div> <!--carosel end-->
+                </div> <!--column end-->
+            </div> <!--row <end--><br>
+            <div class="row">
+                    <div class="col-sm-6">	
+                            <h3 class="myFont"><%= hall.location %></h3>   
+                            <p class="myFont">Cost : ₹<%= hall.cost %> per day </p>
+                            <p class="myFont">Capacity : <%= hall.capacity %> people </p>      
+                    </div>
+                    <div class="col-sm-6">	
+                        <a href="/hall/<%= hall._id %>/book" class="btn butSize pull-right"> <i class="fas fa-bolt"></i> Book Now</a>
+                        <a href="/hall/<%= hall.email %>/viewDates">View Unavailable Dates</a>
+                    </div>
+            </div>
+        </div> <!--column md 7 end-->
+        <div class="col-sm-5">
+				<h3><u class="myFont">Description</u></h3>
+				<p class="myFont">
+                        <%= hall.Desc %>
+                </p>
+                <h3><u class="myFont">Supported Events</u></h3>
+                <p class="myFont">
+                        <%= hall.Events %>
+                </p>
+                <h3><u class="myFont">Other Services</u></h3>
+                <p class="myFont">
+                        <%= hall.Services %>
+                </p>
+                <h3><u class="myFont">Address</u></h3>
+                <p class="myFont">
+                        <%= hall.Address %>
+                </p>
+               
+                <h3><u class="myFont">Contact Mail</u></h3>
+                <p class="myFont">
+                        <%= hall.email %>
+                </p>
+                <h3 class="myFont"><u>Check Availability:</u></h3> <%= status %>
+                <form action="/hall/<%= hall._id %>/check" method="POST" class="form-inline">
+                    <input type="date" name="FromDate" class="form-control" id="iDate" required> <button class="btn btn-primary"> Check</button><br>
+                </form>
+        </div>
+    </div> <!--row end-->
+
+</div>
+<footer class="container-fluid text-center footer">
+        <p style="font-size:20px; color:green"> <i class="fas fa-map-marker-alt"></i> View the map</p>
+      <div style="width: 100%">
+      <iframe width="100%" height="220px" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=<%= hall.location %>+(Map)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+      <a href="https://www.maps.ie/create-google-map/">Google Maps iframe generator</a></iframe></div><br />  
+      
+    </footer>   
+    <!-- <h1><%= hall %></h1> -->
+    <!-- <ol>
+        <li><%= hall.name %></li>
+        <li><%= hall.email %></li>
+        <li><%= hall.location %></li>
+        <li><%= hall.Address %></li>
+        <li><%= hall.cost %></li>
+        <li><%= hall.capacity %></li>
+        <li><%= hall.Desc %></li>
+        <li><%= hall.Availability %></li>
+        <li><%= hall.Reviews %></li>
+        <li><%= hall.Events %></li>
+        <li><%= hall.Services %></li>
+    </ol> -->
+
+<% include partials/footer %>

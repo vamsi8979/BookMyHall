@@ -1,0 +1,52 @@
+<% include partials/header %>
+
+
+<h1 class="loginFont"><u>Sign Up</u></h1>
+
+<form id="register-form" action="/register" method="POST" role="form" data-toggle="validator" >
+    <div class="loginDiv ">
+        <div class="form-group has-feedback">	
+            <label class="myFont">Name :</label>
+            <input type="text" name="name" class="form-control " pattern="^[_A-z0-9\s]{1,}$" data-error="Please enter name field." required><br>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group has-feedback">	
+            <label class="myFont">Email :</label>
+            <input type="email" name="username" class="form-control "  required><br>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
+        </div>
+
+        <div class="form-group has-feedback">	
+            <label class="myFont">Password :</label>
+            <input type="password" name="password" id="inputpassword" data-minlength="3" class="form-control"  data-error="please enter perfect password" required><br>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group has-feedback">	
+            <label class="myFont">Confirm Password :</label>
+            <input type="password" name="" data-minlength="3" class="form-control"  data-match="#inputpassword" data-error="Whoops, these don't match" required><br>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group has-feedback">	
+            <label class="myFont">Mobile Number :</label>
+            <input type="number" name="mobile" data-minlength="10" class="form-control"   data-error="Please Enter Perfect number" required><br>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
+        </div>
+        <div class="form-group has-feedback">	
+            <label class="myFont">Location :</label>
+            <input type="text" name="location" class="form-control " pattern="^[_A-z0-9\s]{1,}$" data-error="Please enter Location" required><br>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
+        </div>
+        
+            <br>
+            <button class="btn btn-primary btn-block">Submit</button>
+            <a href="/login">Already Have an Account Please Login</a>
+    </div>
+</form>
+
+<% include partials/footer %>
