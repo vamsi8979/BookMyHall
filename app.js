@@ -177,11 +177,11 @@ app.get( "/" , function(req,res){
 app.get("/sort", function(req,res){
     Hall.find({}).sort({cost:1}).exec(function(err,found){
         if(err){
-            console.log(err);
+            // console.log(err);
         }
         else{
             for (var i = 0; i < found.length; i++) {
-                console.log(found[i].cost);
+                // console.log(found[i].cost);
             }
             res.send(found);
         }
@@ -368,7 +368,7 @@ app.post('/forgotPassword', function(req, res, next) {
             'If you did not request this, please ignore this email and your password will remain unchanged.\n'
         };
         smtpTransport.sendMail(mailOptions, function(err) {
-          console.log('mail sent');
+        //   console.log('mail sent');
           req.flash('success', 'An e-mail has been sent to ' + user.username + ' with further instructions.');
           done(err, 'done');
         });
@@ -486,20 +486,20 @@ app.post("/addUsers" , function(req,res){
                     if (err) {
                         console.log(err);
                     }else{
-                        console.log("New Owner Added\n" + owner + "\n");
+                        // console.log("New Owner Added\n" + owner + "\n");
                         Hall.create( newHall ,function(err , hall){
                             if(err){
                                 console.log(err);
                             }else{
-                              console.log("Hall Details \n"+hall+"\n");
+                            //   console.log("Hall Details \n"+hall+"\n");
                               //hall.images.push(cretaed image)
                               owner.halls.push(hall) ;
-                              console.log("after push owner.halls.push\n"+owner+"\n");
+                            //   console.log("after push owner.halls.push\n"+owner+"\n");
                               owner.save(function(err,data){
                                   if(err){
                                       console.log(err);
                                   }else{
-                                      console.log("Data Details\n" + data + "\n");
+                                    //   console.log("Data Details\n" + data + "\n");
                                   }
                               });
                             }
@@ -553,7 +553,7 @@ app.post("/register" , function(req,res){
                     if(err){
                         console.log(err);
                     }else{
-                        console.log(newlyCreated);
+                        // console.log(newlyCreated);
                     }
                 });
                 res.redirect("/search");
@@ -610,7 +610,7 @@ app.get("/customer/:id" , function(req,res){
         if(err){
             console.log(err);
         }else{
-            console.log(data);
+            // console.log(data);
             res.render("customer_form" , {data : data });
         }
     });
@@ -628,14 +628,14 @@ app.put("/customer/:id" , isLoggedIn ,function(req,res){
             console.log(err);
             res.send("ERROR OCCURED"+err);
         }else{
-            console.log(updated);
+            // console.log(updated);
             res.redirect("/customer");
         }
     });
 });
 //owner dashboard page
 app.get("/owner" ,isLoggedIn,function(req,res){
-    console.log(req.user.username);
+    // console.log(req.user.username);
     var Oemail =  req.user.username;
     Owner.findOne({email: Oemail}).populate("halls").exec(function(err,user){
         if(err){
@@ -653,7 +653,7 @@ app.get("/owner/:email/viewCustomers" , isLoggedIn,function(req,res){
         if(err){
             console.log(err);
         }else{
-            console.log(found);
+            // console.log(found);
             res.render("viewCustomers" , { currentUser : req.user ,found : found } );
             // res.send(found);
         }
@@ -666,7 +666,7 @@ app.get("/viewOneCustomer/:email" , function(req,res){
         if(err){
             console.log(err);
         }else{
-            console.log(data);
+            // console.log(data);
             res.render("viewOneCustomer", {data : data , currentUser:req.user});
         }
     });
@@ -697,7 +697,7 @@ app.put("/owner/:id/edit" , isLoggedIn ,function(req,res){
             console.log(err);
             res.send("ERROR OCCURED"+err);
         }else{
-            console.log(updated);
+            // console.log(updated);
             res.redirect("/owner");
         }
     });
@@ -708,7 +708,7 @@ app.get("/image/:id/edit" , isLoggedIn ,function(req,res){
         if(err){
             console.log(err);
         }else{
-            console.log(found);
+            // console.log(found);
             res.render("owner_gallery", { currentUser : req.user , halls : found });
         }
     });
@@ -719,25 +719,25 @@ app.post("/image/:id/edit" , isLoggedIn ,function(req,res){
         if(err){
             console.log(err);
         }else{
-            console.log("found hall \n"+found+"\n");
+            // console.log("found hall \n"+found+"\n");
             // res.render("hall_form" , { hall : found });
             upload(req,res,(err) => {
                 if(err){
                     console.log(err);
                 }else{
-                    console.log("req.file \n"+ req.file + "\n");
+                    // console.log("req.file \n"+ req.file + "\n");
                     Image.create(req.file,function(err,newlyCreated){
                         if(err){
                             console.log(err);
                         }else{
-                            console.log("newlycreated image\n"+newlyCreated+"\n");
+                            // console.log("newlycreated image\n"+newlyCreated+"\n");
                             found.images.push(newlyCreated);
-                            console.log("found.images.push\n"+found+"\n");
+                            // console.log("found.images.push\n"+found+"\n");
                             found.save(function(err,final){
                                 if(err){
                                     console.log(err);
                                 }else{
-                                    console.log("final is \n" + final + "\n");
+                                    // console.log("final is \n" + final + "\n");
                                     res.redirect("/image/"+req.params.id+"/edit");
                                 }
                             });
@@ -782,7 +782,7 @@ app.get("/hall/:id/edit" , isLoggedIn ,function(req,res){
         if(err){
             console.log(err);
         }else{
-            console.log(found);
+            // console.log(found);
             res.render("hall_form" , { currentUser : req.user , hall : found });
         }
     });
@@ -806,7 +806,7 @@ app.put("/hall/:id/edit" , isLoggedIn , function(req,res){
             console.log(err);
             res.send("ERROR OCCURED"+err);
         }else{
-            console.log(updated);
+            // console.log(updated);
             res.redirect("/owner");
         }
     });
@@ -828,7 +828,7 @@ app.post("/hall/:id/check", isLoggedIn, function(req,res){
         if(err){
             console.log(err);
         }else{
-            console.log("====================\n\n\n"+data+"======================\n\n\n");
+            // console.log("====================\n\n\n"+data+"======================\n\n\n");
             Book.find({owner : data.email } , function(err, book){
                 if(err){
                     console.log(err);
@@ -840,13 +840,13 @@ app.post("/hall/:id/check", isLoggedIn, function(req,res){
                     for (var i = 0 ; i < book.length; i++) {
                         var today = new Date(book[i].FromDate);//date from database
                         var NumOfDays = book[i].NumOfDays;
-                        console.log("dfcgvbhjnmk : ==== "+NumOfDays);
+                        // console.log("dfcgvbhjnmk : ==== "+NumOfDays);
                         var tomorrow = new Date(today);//for incrementing the date to next day
                         var got = new Date(myDate);//date submitted by user to check 
         
                         for (var j = 0 ; j < NumOfDays ; j++ ){
                             if(got.getTime() === tomorrow.getTime()){
-                                console.log("Already Booked\n");
+                                // console.log("Already Booked\n");
                                 flag ++ ; 
                                 break;
                             }
@@ -880,7 +880,7 @@ app.post("/hall/:id/book" , isLoggedIn ,function(req,res){
         if(err){
             console.log(err);
         }else{
-            console.log("====================\n\n\n"+data+"======================\n\n\n");
+            // console.log("====================\n\n\n"+data+"======================\n\n\n");
             Book.find({owner : data.email } , function(err, book){
                 if(err){
                     console.log(err);
@@ -892,13 +892,13 @@ app.post("/hall/:id/book" , isLoggedIn ,function(req,res){
                     for (var i = 0 ; i < book.length; i++) {
                         var today = new Date(book[i].FromDate);//date from database
                         var NumOfDays = book[i].NumOfDays;
-                        console.log("dfcgvbhjnmk : ==== "+NumOfDays);
+                        // console.log("dfcgvbhjnmk : ==== "+NumOfDays);
                         var tomorrow = new Date(today);//for incrementing the date to next day
                         var got = new Date(myDate);//date submitted by user to check 
         
                         for (var j = 0 ; j < NumOfDays ; j++ ){
                             if(got.getTime() === tomorrow.getTime()){
-                                console.log("Already Booked\n");
+                                // console.log("Already Booked\n");
                                 flag ++ ; 
                                 break;
                             }
@@ -925,7 +925,7 @@ app.post("/hall/:id/book" , isLoggedIn ,function(req,res){
                             if(err){
                                 console.log(err);
                             }else{
-                                console.log("Created book data \n" + bookData );
+                                // console.log("Created book data \n" + bookData );
                                 //hall customer
                                 Hall.findById( req.params.id , function(err,hallData){
                                     if(err){
@@ -933,20 +933,20 @@ app.post("/hall/:id/book" , isLoggedIn ,function(req,res){
                                     }else{
                                         bookData.owner.push(hallData.email);
                     
-                                        console.log("After newbook\n"+newBook +"Found hall data\n"+hallData);
+                                        // console.log("After newbook\n"+newBook +"Found hall data\n"+hallData);
                                         bookData.hall.push(hallData);
-                                        console.log("pushed hall data into bookdata\n" + bookData );
+                                        // console.log("pushed hall data into bookdata\n" + bookData );
                                         bookData.save(function(err,final){
                                             if(err){
                                                 console.log(err);
                                             }else{
-                                                console.log("=================Final data=========\n\n"+final+"\n\n==========================\n\n");       
+                                                // console.log("=================Final data=========\n\n"+final+"\n\n==========================\n\n");       
                                                 Hall.findByIdAndUpdate( req.params.id   , { book : final }  , function(err,updated){
                                                     if(err){
-                                                        console.log(err);
+                                                        // console.log(err);
                                                         res.send("ERROR OCCURED"+err);
                                                     }else{
-                                                        console.log("============updated=====================\n\n"+updated+"\n\n==============================================\n\n");
+                                                        // console.log("============updated=====================\n\n"+updated+"\n\n==============================================\n\n");
                                                         req.flash("success", "Successfully Booked !!");
                                                         if(req.user.type == "C"){
                                                             res.redirect("/customer");
@@ -986,7 +986,7 @@ function isLoggedIn(req,res,next){
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
-// app.listen("3000","localhost",function(){
-//     console.log("localhost:3000 \n\n ..::  !! BOOK MY HALL !! ::.. \n\n SERVER STARTED");
+// app.listen("3001","localhost",function(){
+//     console.log("localhost:3001 \n\n ..::  !! BOOK MY HALL !! ::.. \n\n SERVER STARTED");
 // });
 app.listen(process.env.PORT,process.env.IP);
