@@ -169,7 +169,7 @@ function checkFileType(file ,cb){
 //=================//
 //ROUTES
 //=================//
-//home page
+//home page test change in comment
 app.get( "/" , function(req,res){
     res.render("home"  , { currentUser : req.user } );
 });
@@ -907,13 +907,13 @@ app.post("/hall/:id/book" , isLoggedIn ,function(req,res){
                     }
                     var status = "";
                     if(flag == 1){
-                        status = "Your Selected Date is Already BOOKED && Not Available";
+                        status = "Your Selected Date is Already BOOKED By Someone and is  Not Available";
                         req.flash( "info" , status);
                         res.redirect("/hall/" + req.params.id + "/view");
                         
                     }
                     else{
-                        status = "NOT BOOKED && Available";
+                        status = "Your Selected is not Booked and It is Available";
                         var newBook = {
                             customer : req.user.username,
                             FromDate :req.body.FromDate,
@@ -986,7 +986,13 @@ function isLoggedIn(req,res,next){
 function escapeRegex(text) {
     return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
+//other page not found handler
+app.get('*', function(req, res, next){
+    // res.status(404);
+    // res.redirect('/page-not-found');
+    res.send("<h1>YOU ARE LOOKING FOR 404 NOT FOUND</h1>");
+});
 // app.listen("3001","localhost",function(){
-//     console.log("localhost:3001 \n\n ..::  !! BOOK MY HALL !! ::.. \n\n SERVER STARTED");
-// });
+    //     console.log("localhost:3001 \n\n ..::  !! BOOK MY HALL !! ::.. \n\n SERVER STARTED");
+    // });
 app.listen(process.env.PORT,process.env.IP);
