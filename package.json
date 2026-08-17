@@ -9,6 +9,7 @@
     "bootstrap-validator": "^0.11.9",
     "connect-flash": "^0.1.1",
     "crypto": "^1.0.1",
+    "dotenv": "^17.4.2",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-ip": "^1.0.3",
@@ -25,7 +26,6 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.4.0"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "node app.js"
   },

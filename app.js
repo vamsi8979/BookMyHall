@@ -1,5 +1,6 @@
 //for express js
 var express = require("express");
+require("dotenv").config();
 var app     = express();
 var async = require("async");//for mail
 var nodemailer = require("nodemailer");//for mail
@@ -7,7 +8,7 @@ var crypto = require("crypto");//for mail
 //for mongoose
 var mongoose = require("mongoose");
 //mongoose.connect("mongodb://localhost/Bv9");
-mongoose.connect("mongodb://bookmyhall:hall@ds159892.mlab.com:59892/bookmyhall");
+mongoose.connect(process.env.MONGODB_URI);
 
 var moment = require("moment");//for time
 //for multer and path
@@ -354,13 +355,13 @@ app.post('/forgotPassword', function(req, res, next) {
         var smtpTransport = nodemailer.createTransport({
           service: 'gmail', 
           auth: {
-            user: 'celebrons.bookmyhall@gmail.com',
-            pass: 'celebrons@bookmyhall'
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
           }
         });
         var mailOptions = {
           to: user.username,
-          from: 'celebrons.bookmyhall@gmail.com',
+          from: process.env.EMAIL_USER,
           subject: 'BookMyHall Password Reset',
           text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
             'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -418,13 +419,13 @@ app.post('/forgotPassword', function(req, res, next) {
         var smtpTransport = nodemailer.createTransport({
           service: 'gmail', 
           auth: {
-            user: 'celebrons.bookmyhall@gmail.com',
-            pass: 'celebrons@bookmyhall'
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
           }
         });
         var mailOptions = {
           to: user.username,
-          from: 'celebrons.bookmyhall@gmail.com',
+          from: process.env.EMAIL_USER,
           subject: 'Your password has been changed',
           text: 'Hello,\t\t This is From BookMyHall\n\n' + 
             'This is a confirmation that the password for your account ' + user.username + ' has just been changed.\n'
